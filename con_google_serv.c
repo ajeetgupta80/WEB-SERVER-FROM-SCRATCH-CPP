@@ -5,6 +5,8 @@
 #include <string.h>
 #include <sys/socket.h>
 
+int createTCPipv4socket();
+
 void error(const char *msg) {
   perror(msg);
   exit(1);
@@ -17,7 +19,7 @@ int main(int argc, char *argv[]) {
     exit(1);
   }
 
-  int sockfd = socket(AF_INET, SOCK_STREAM, 0);
+  int sockfd = createTCPipv4socket();
 
   if (sockfd < 0) {
     error("error creating socket ");
@@ -51,3 +53,5 @@ int main(int argc, char *argv[]) {
 
   return 0;
 }
+
+int createTCPipv4socket() { return socket(AF_INET, SOCK_STREAM, 0); }
